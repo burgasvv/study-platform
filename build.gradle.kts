@@ -35,6 +35,7 @@ dependencies {
     implementation("com.zaxxer:HikariCP:6.2.1")
     implementation("redis.clients:jedis:5.2.0")
     implementation("org.mindrot:jbcrypt:0.4")
+    implementation("io.ktor:ktor-server-auth:3.5.0")
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)

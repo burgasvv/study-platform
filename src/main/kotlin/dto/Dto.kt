@@ -12,6 +12,11 @@ interface Dependency
 interface Response
 
 @Serializable
+data class AuthSession(
+    val email: String?
+)
+
+@Serializable
 data class CsrfToken(
     @Serializable(with = UUIDSerializer::class)
     val token: UUID

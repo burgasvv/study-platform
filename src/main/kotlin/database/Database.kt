@@ -1,11 +1,10 @@
 
-@file:Suppress("UnusedReceiverParameter", "unused")
 
 package org.burgas.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import io.ktor.server.application.*
+import io.ktor.server.application.Application
 import org.jetbrains.exposed.v1.core.ReferenceOption
 import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.core.dao.id.java.UUIDTable
@@ -57,6 +56,7 @@ object FileTable : UUIDTable(name = "file") {
     }
 }
 
+@Suppress("unused")
 enum class Authority {
     ADMIN, USER
 }

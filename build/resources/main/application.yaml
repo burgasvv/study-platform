@@ -7,5 +7,4 @@ ktor:
     modules:
       - org.burgas.security.SecurityKt.configureSecurity
       - org.burgas.serialization.SerializationKt.configureSerialization
-      - org.burgas.database.DatabaseKt.configureDatabase
       - org.burgas.routing.SecurityRouterKt.configureSecurityRouter
