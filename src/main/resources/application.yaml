@@ -9,3 +9,4 @@ ktor:
       - org.burgas.serialization.SerializationKt.configureSerialization
       - org.burgas.database.DatabaseKt.configureDatabase
       - org.burgas.routing.SecurityRouterKt.configureSecurityRouter
+      - org.burgas.routing.IdentityRouterKt.configureIdentityRouter

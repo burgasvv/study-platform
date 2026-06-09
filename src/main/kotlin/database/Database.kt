@@ -125,6 +125,7 @@ object ProjectTable : UUIDTable(name = "project") {
     val createdAt = datetime("created_at").defaultExpression(CurrentDateTime)
 }
 
+@Suppress("UnusedReceiverParameter")
 fun Application.configureDatabase() {
     transaction(db = DatabaseConnection.postgres) {
         SchemaUtils.create(

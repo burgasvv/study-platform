@@ -9,3 +9,63 @@
 GET /api/v1/security/csrf-token
 Host: localhost:9000
 Accept: application/json
+
+###
+GET /api/v1/security/login
+Host: localhost:9000
+Accept: text/plain
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+###
+GET /api/v1/security/logout
+Host: localhost:9000
+Accept: text/plain
+
+
+
+### Identity Requests
+
+
+
+###
+POST /api/v1/identities/create
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+
+{
+    "authority": "ADMIN",
+    "email": "burgasvv@gmail.com",
+    "password": "burgasvv",
+    "status": true,
+    "firstname": "Бургас",
+    "lastname": "Вячеслав",
+    "patronymic": "Васильевич",
+    "about": "Личная информация об аккаунте"
+}
+
+###
+POST /api/v1/identities/update
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+
+{
+    "id": "abc20e80-0b42-4619-82d1-bf18a7d422f1",
+    "about": "Личная информация о пользователе Бургасе Вячеславе Васильевиче"
+}
+
+###
+DELETE /api/v1/identities/delete?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
+Host: localhost:9000
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+
+###
+GET /api/v1/identities/by-id?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
+Host: localhost:9000
+Accept: application/json
