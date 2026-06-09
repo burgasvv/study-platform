@@ -43,7 +43,7 @@ interface ResponseMapper<R : Response> {
     fun toResponse(): R
 }
 
-class ImageEntity(id: EntityID<UUID>) : UUIDEntity(id), File, ResponseMapper<ImageResponse>, Uploader<ImageEntity> {
+open class ImageEntity(id: EntityID<UUID>) : UUIDEntity(id), File, ResponseMapper<ImageResponse>, Uploader<ImageEntity> {
     companion object : UUIDEntityClass<ImageEntity>(ImageTable)
 
     var name by ImageTable.name
