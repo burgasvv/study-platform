@@ -79,7 +79,7 @@ data class IdentityResponse(
     val image: ImageResponse?,
     val files: Set<FileResponse>?,
     val courses: Set<CourseDependency>?
-)
+) : Response
 
 @Serializable
 data class CourseRequest(
@@ -117,7 +117,7 @@ data class ProjectRequest(
     val description: String?,
     @Serializable(with = UUIDSerializer::class)
     val courseId: UUID?
-)
+) : Request
 
 @Serializable
 data class ProjectDependency(
@@ -137,4 +137,4 @@ data class ProjectResponse(
     val createdAt: String?,
     val course: CourseDependency?,
     val task: FileResponse?
-)
+) : Response

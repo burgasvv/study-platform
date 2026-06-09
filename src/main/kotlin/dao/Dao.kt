@@ -1,21 +1,22 @@
 package org.burgas.dao
 
-import io.ktor.http.content.PartData
-import io.ktor.utils.io.InternalAPI
-import io.ktor.utils.io.toByteArray
+import io.ktor.http.content.*
+import io.ktor.utils.io.*
+import kotlinx.datetime.toJavaLocalDate
+import kotlinx.datetime.toJavaLocalDateTime
+import kotlinx.datetime.toKotlinLocalDate
+import kotlinx.datetime.toKotlinLocalDateTime
 import kotlinx.io.readByteArray
 import org.burgas.database.*
-import org.burgas.dto.Dependency
-import org.burgas.dto.FileResponse
-import org.burgas.dto.IdentityRequest
-import org.burgas.dto.ImageResponse
-import org.burgas.dto.Request
-import org.burgas.dto.Response
+import org.burgas.dto.*
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.core.statements.api.ExposedBlob
 import org.jetbrains.exposed.v1.dao.java.UUIDEntity
 import org.jetbrains.exposed.v1.dao.java.UUIDEntityClass
 import org.mindrot.jbcrypt.BCrypt
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 interface File
@@ -109,7 +110,9 @@ class FileEntity(id: EntityID<UUID>) : UUIDEntity(id), File, ResponseMapper<File
     }
 }
 
-class IdentityEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao, Inserter<IdentityRequest>, Updater<IdentityRequest> {
+class IdentityEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao, Inserter<IdentityRequest>, Updater<IdentityRequest>,
+    DependencyMapper<IdentityDependency>, ResponseMapper<IdentityResponse> {
+
     companion object : UUIDEntityClass<IdentityEntity>(IdentityTable)
 
     var authority by IdentityTable.authority
@@ -144,9 +147,36 @@ class IdentityEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao, Inserter<Identit
         this.patronymic = request.patronymic ?: this.patronymic
         this.about = request.about ?: this.about
     }
+
+    override fun toDependency(): IdentityDependency {
+        return IdentityDependency(
+            id = this.id.value,
+            email = this.email,
+            firstname = this.firstname,
+            lastname = this.lastname,
+            patronymic = this.patronymic,
+            about = this.about,
+            image = this.image?.toResponse()
+        )
+    }
+
+    override fun toResponse(): IdentityResponse {
+        return IdentityResponse(
+            id = this.id.value,
+            email = this.email,
+            firstname = this.firstname,
+            lastname = this.lastname,
+            patronymic = this.patronymic,
+            about = this.about,
+            image = this.image?.toResponse(),
+            files = this.files.map { it.toResponse() }.toHashSet(),
+            courses = this.courses.map { it.toDependency() }.toHashSet()
+        )
+    }
 }
 
-class CourseEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao {
+class CourseEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao, Inserter<CourseRequest>, Updater<CourseRequest>,
+    DependencyMapper<CourseDependency>, ResponseMapper<CourseResponse> {
     companion object : UUIDEntityClass<CourseEntity>(CourseTable)
 
     var name by CourseTable.name
@@ -155,9 +185,41 @@ class CourseEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao {
 
     var identities by IdentityEntity.via(IdentityCourseTable.courseId, IdentityCourseTable.identityId)
     val projects by ProjectEntity.referrersOn(ProjectTable.courseId)
+
+    override fun insert(request: CourseRequest) {
+        this.name = request.name!!
+        this.description = request.description!!
+        this.createdAt = LocalDate.now().toKotlinLocalDate()
+    }
+
+    override fun update(request: CourseRequest) {
+        this.name = request.name ?: this.name
+        this.description = request.description ?: this.description
+    }
+
+    override fun toDependency(): CourseDependency {
+        return CourseDependency(
+            id = this.id.value,
+            name = this.name,
+            description = this.description,
+            createdAt = this.createdAt.toJavaLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))
+        )
+    }
+
+    override fun toResponse(): CourseResponse {
+        return CourseResponse(
+            id = this.id.value,
+            name = this.name,
+            description = this.description,
+            createdAt = this.createdAt.toJavaLocalDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy")),
+            identities = this.identities.map { it.toDependency() }.toHashSet(),
+            projects = this.projects.map { it.toDependency() }.toHashSet()
+        )
+    }
 }
 
-class ProjectEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao {
+class ProjectEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao, Inserter<ProjectRequest>, Updater<ProjectRequest>,
+    DependencyMapper<ProjectDependency>, ResponseMapper<ProjectResponse> {
     companion object : UUIDEntityClass<ProjectEntity>(ProjectTable)
 
     var name by ProjectTable.name
@@ -166,4 +228,37 @@ class ProjectEntity(id: EntityID<UUID>) : UUIDEntity(id), Dao {
 
     var course by CourseEntity.referencedOn(ProjectTable.courseId)
     var task by FileEntity.optionalReferencedOn(ProjectTable.taskId)
+
+    override fun insert(request: ProjectRequest) {
+        this.name = request.name!!
+        this.description = request.description!!
+        this.createdAt = LocalDateTime.now().toKotlinLocalDateTime()
+        this.course = CourseEntity.findById(request.courseId!!)!!
+    }
+
+    override fun update(request: ProjectRequest) {
+        this.name = request.name ?: this.name
+        this.description = request.description ?: this.description
+        this.course = CourseEntity.findById(request.courseId ?: UUID(0,0)) ?: this.course
+    }
+
+    override fun toDependency(): ProjectDependency {
+        return ProjectDependency(
+            id = this.id.value,
+            name = this.name,
+            description = this.description,
+            createdAt = this.createdAt.toJavaLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy, hh:mm"))
+        )
+    }
+
+    override fun toResponse(): ProjectResponse {
+        return ProjectResponse(
+            id = this.id.value,
+            name = this.name,
+            description = this.description,
+            createdAt = this.createdAt.toJavaLocalDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy, hh:mm")),
+            course = this.course.toDependency(),
+            task = this.task?.toResponse()
+        )
+    }
 }
