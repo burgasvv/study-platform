@@ -87,6 +87,14 @@ data class IdentityResponse(
 ) : Response
 
 @Serializable
+data class CourseIdentityRequest(
+    @Serializable(with = UUIDSerializer::class)
+    val courseId: UUID,
+    @Serializable(with = UUIDSerializer::class)
+    val identityId: UUID
+) : Request
+
+@Serializable
 data class CourseRequest(
     @Serializable(with = UUIDSerializer::class)
     val id: UUID? = null,

@@ -10,3 +10,4 @@ ktor:
       - org.burgas.database.DatabaseKt.configureDatabase
       - org.burgas.routing.SecurityRouterKt.configureSecurityRouter
       - org.burgas.routing.IdentityRouterKt.configureIdentityRouter
+      - org.burgas.routing.CourseRouterKt.configureCourseRouter

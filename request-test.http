@@ -121,3 +121,81 @@ Authorization: Basic burgasvv@gmail.com burgasvv
     "id": "1a224a3a-9538-4e4d-af2e-e737f6246204",
     "status": true
 }
+
+
+
+### Course Requests
+
+
+
+###
+POST /api/v1/courses/create
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+{
+    "name": "Java разработчик",
+    "description": "Описание курса Java разработчик"
+}
+
+###
+PUT /api/v1/courses/update
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+{
+    "id": "51b325af-7b99-4f13-a3c3-7aad0a1776df",
+    "description": "Описание нового курса Java разработчик"
+}
+
+###
+DELETE /api/v1/courses/delete?courseId=51b325af-7b99-4f13-a3c3-7aad0a1776df
+Host: localhost:9000
+Accept: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+###
+GET /api/v1/courses
+Host: localhost:9000
+Accept: application/json
+
+###
+GET /api/v1/courses/by-id?courseId=0d518a52-e188-47ca-befd-742ce4786812
+Host: localhost:9000
+Accept: application/json
+
+###
+PUT /api/v1/courses/add-identity
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+
+{
+    "courseId": "0d518a52-e188-47ca-befd-742ce4786812",
+    "identityId": "abc20e80-0b42-4619-82d1-bf18a7d422f1"
+}
+
+###
+PUT /api/v1/courses/remove-identity
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+
+{
+    "courseId": "0d518a52-e188-47ca-befd-742ce4786812",
+    "identityId": "abc20e80-0b42-4619-82d1-bf18a7d422f1"
+}
