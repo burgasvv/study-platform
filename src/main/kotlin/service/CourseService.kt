@@ -129,7 +129,7 @@ class CourseService : CacheHandler<CourseEntity>, FindService<UUID, CourseEntity
             handleCache(courseEntity)
             identityService.handleCache(identityEntity)
         } else {
-            throw IllegalArgumentException("Identity already in course identity list")
+            throw IllegalArgumentException("Identity not in course identity list")
         }
     }
 }
