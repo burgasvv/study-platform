@@ -11,3 +11,4 @@ ktor:
       - org.burgas.routing.SecurityRouterKt.configureSecurityRouter
       - org.burgas.routing.IdentityRouterKt.configureIdentityRouter
       - org.burgas.routing.CourseRouterKt.configureCourseRouter
+      - org.burgas.routing.ProjectRouterKt.configureProjectRouter

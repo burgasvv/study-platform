@@ -199,3 +199,50 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
     "courseId": "0d518a52-e188-47ca-befd-742ce4786812",
     "identityId": "abc20e80-0b42-4619-82d1-bf18a7d422f1"
 }
+
+
+
+### Project Requests
+
+
+
+###
+POST /api/v1/projects/create
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+{
+    "name": "Variables Part",
+    "description": "Описание проекта Variables Part",
+    "courseId": "0d518a52-e188-47ca-befd-742ce4786812"
+}
+
+###
+PUT /api/v1/projects/update
+Host: localhost:9000
+Accept: application/json
+Content-Type: application/json
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+{
+    "id": "eb91e07e-973e-4ebd-881e-b042419c526e",
+    "name": "Variables New Part"
+}
+
+###
+DELETE /api/v1/projects/delete?projectId=eb91e07e-973e-4ebd-881e-b042419c526e
+Host: localhost:9000
+Origin: http://localhost:9000
+X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Authorization: Basic burgasvv@gmail.com burgasvv
+
+###
+GET /api/v1/projects/by-id?projectId=3e585146-da09-4580-8bd1-95ae4c27f05b
+Host: localhost:9000
+Accept: application/json
