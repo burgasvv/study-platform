@@ -1,10 +1,9 @@
-
-
 package org.burgas.database
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.Application
+import io.ktor.server.config.ApplicationConfig
 import org.jetbrains.exposed.v1.core.ReferenceOption
 import org.jetbrains.exposed.v1.core.Table
 import org.jetbrains.exposed.v1.core.dao.id.java.UUIDTable
@@ -20,11 +19,13 @@ import redis.clients.jedis.JedisPoolConfig
 
 object DatabaseConnection {
 
+    private val config = ApplicationConfig("application.yaml")
+
     private val hikariConfig = HikariConfig().apply {
-        driverClassName = "org.postgresql.Driver"
-        jdbcUrl = "jdbc:postgresql://localhost:5000/study-platform-db"
-        username = "postgres"
-        password = "postgres"
+        driverClassName = config.property("ktor.postgres.driver").getString()
+        jdbcUrl = config.property("ktor.postgres.url").getString()
+        username = config.property("ktor.postgres.username").getString()
+        password = config.property("ktor.postgres.password").getString()
         maximumPoolSize = 20
         minimumIdle = 5
         validate()
@@ -34,7 +35,11 @@ object DatabaseConnection {
 
     val postgres = Database.connect(datasource = dataSource)
 
-    val redisPool = JedisPool(JedisPoolConfig(), "localhost", 6000)
+    val redisPool = JedisPool(
+        JedisPoolConfig(),
+        config.property("ktor.redis.host").getString(),
+        config.property("ktor.redis.port").getString().toInt()
+    )
 }
 
 object ImageTable : UUIDTable(name = "image") {
@@ -42,6 +47,7 @@ object ImageTable : UUIDTable(name = "image") {
     val contentType = varchar("content_type", 250)
     val preview = bool("preview").default(true)
     val data = blob("data")
+
     init {
         index(isUnique = false, name, contentType, preview)
     }
@@ -51,6 +57,7 @@ object FileTable : UUIDTable(name = "file") {
     val name = varchar("name", 250)
     val contentType = varchar("content_type", 250)
     val data = blob("data")
+
     init {
         index(isUnique = false, name, contentType)
     }
@@ -74,6 +81,7 @@ object IdentityTable : UUIDTable(name = "identity") {
         name = "image_id", refColumn = ImageTable.id,
         onDelete = ReferenceOption.SET_NULL, onUpdate = ReferenceOption.CASCADE
     ).uniqueIndex()
+
     init {
         index(isUnique = false, firstname, lastname, patronymic)
     }

@@ -1,8 +1,16 @@
 
 ktor:
   deployment:
-    port: 9000
+    port: $PORT:8080
     host: 0.0.0.0
+  postgres:
+    driver: 'org.postgresql.Driver'
+    url: '$POSTGRES_URL:jdbc:postgresql://localhost:5000/study-platform-db'
+    username: '$POSTGRES_USER:postgres'
+    password: '$POSTGRES_PASSWORD:postgres'
+  redis:
+    host: '$REDIS_HOST:localhost'
+    port: $REDIS_PORT:6000
   application:
     modules:
       - org.burgas.security.SecurityKt.configureSecurity

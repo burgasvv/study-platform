@@ -1,6 +1,6 @@
 package org.burgas.service
 
-import io.ktor.http.content.MultiPartData
+import io.ktor.http.content.*
 import kotlinx.serialization.json.Json
 import org.burgas.dao.IdentityEntity
 import org.burgas.database.DatabaseConnection
