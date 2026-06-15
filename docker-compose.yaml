@@ -25,25 +25,6 @@ services:
     volumes:
       - redis-data:/var/lib/redis/data
 
-  study-platform:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: study-platform
-    restart: unless-stopped
-    depends_on:
-      - postgres
-      - redis
-    ports:
-      - "9000:9000"
-    environment:
-      PORT: 9000
-      POSTGRES_URL: jdbc:postgresql://postgres:5432/study-platform-db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-
 volumes:
   postgres-data:
   redis-data:
