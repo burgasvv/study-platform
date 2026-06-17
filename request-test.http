@@ -7,18 +7,18 @@
 
 ###
 GET /api/v1/security/csrf-token
-Host: localhost:9000
+Host: localhost:8080
 Accept: application/json
 
 ###
 GET /api/v1/security/login
-Host: localhost:9000
+Host: localhost:8080
 Accept: text/plain
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
 GET /api/v1/security/logout
-Host: localhost:9000
+Host: localhost:8080
 Accept: text/plain
 
 
@@ -52,7 +52,7 @@ Host: localhost:9000
 Accept: application/json
 Content-Type: application/json
 Origin: http://localhost:9000
-X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 
 {
     "authority": "USER",
@@ -67,19 +67,19 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 ###
 POST /api/v1/identities/update
-Host: localhost:9000
+Host: localhost:8080
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
-X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Origin: http://localhost:8080
+X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 
 {
-    "id": "abc20e80-0b42-4619-82d1-bf18a7d422f1",
+    "id": "e2385462-0674-47c3-96c0-c5666526c76f",
     "about": "Личная информация о пользователе Бургасе Вячеславе Васильевиче"
 }
 
 ###
-DELETE /api/v1/identities/delete?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
+POST /api/v1/identities/delete?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
 Host: localhost:9000
 Origin: http://localhost:9000
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
