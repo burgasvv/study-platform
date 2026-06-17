@@ -4,13 +4,17 @@ import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.request.*
+import io.ktor.client.request.forms.MultiPartFormDataContent
+import io.ktor.client.request.forms.formData
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.testing.*
 import kotlinx.serialization.json.Json
+import org.burgas.dao.FileEntity
 import org.burgas.dao.IdentityEntity
 import org.burgas.database.Authority
 import org.burgas.database.DatabaseConnection
+import org.burgas.database.FileTable
 import org.burgas.database.IdentityTable
 import org.burgas.dto.CsrfToken
 import org.burgas.dto.IdentityRequest
@@ -62,9 +66,7 @@ class IdentityRouterTest {
             )
             setBody(identityRequest)
         }
-            .apply {
-                assertEquals(HttpStatusCode.OK, status)
-            }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
 
         httpClient.get("/api/v1/security/login") {
             header(HttpHeaders.Host, "localhost:8080")
@@ -88,27 +90,76 @@ class IdentityRouterTest {
             )
             setBody(identityRequest)
         }
-            .apply {
-                assertEquals(HttpStatusCode.Found, status)
-            }
+            .apply { assertEquals(HttpStatusCode.Found, status) }
 
         httpClient.get("/api/v1/identities") {
             header(HttpHeaders.Host, "localhost:8080")
             header(HttpHeaders.Accept, ContentType.Application.Json)
             basicAuth("admin@gmail.com", "admin")
         }
-            .apply {
-                assertEquals(HttpStatusCode.OK, status)
-            }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
 
         httpClient.get("/api/v1/identities/by-id") {
             parameter("identityId", identityEntity.id.value)
             header(HttpHeaders.Host, "localhost:8080")
             header(HttpHeaders.Accept, ContentType.Application.Json)
         }
-            .apply {
-                assertEquals(HttpStatusCode.OK, status)
-            }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
+
+        httpClient.post("/api/v1/identities/upload-image") {
+            parameter("identityId", identityEntity.id.value)
+            header(HttpHeaders.Host, "localhost:8080")
+            header(HttpHeaders.Origin, "http://localhost:8080")
+            header("X-CSRF-Token", csrfToken.token)
+            val multipartData = MultiPartFormDataContent(formData {
+                append(
+                    "image", "image-data".toByteArray(),
+                    Headers.build {
+                        append(HttpHeaders.ContentType, ContentType.Image.JPEG)
+                        append(HttpHeaders.ContentDisposition, "filename=\"test_image.jpg\"")
+                    })
+            })
+            setBody(multipartData)
+        }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
+
+        httpClient.delete("/api/v1/identities/remove-image") {
+            parameter("identityId", identityEntity.id.value)
+            header(HttpHeaders.Host, "localhost:8080")
+            header(HttpHeaders.Origin, "http://localhost:8080")
+            header("X-CSRF-Token", csrfToken.token)
+        }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
+
+        httpClient.post("/api/v1/identities/upload-file") {
+            parameter("identityId", identityEntity.id.value)
+            header(HttpHeaders.Host, "localhost:8080")
+            header(HttpHeaders.Origin, "http://localhost:8080")
+            header("X-CSRF-Token", csrfToken.token)
+            val multipartData = MultiPartFormDataContent(formData {
+                append(
+                    "file", "file-data".toByteArray(),
+                    Headers.build {
+                        append(HttpHeaders.ContentType, ContentType.Application.OctetStream)
+                        append(HttpHeaders.ContentDisposition, "filename=\"test_file.txt\"")
+                    })
+            })
+            setBody(multipartData)
+        }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
+
+        val fileEntity = suspendTransaction(db = DatabaseConnection.postgres, readOnly = true) {
+            FileEntity.find { FileTable.name eq "test_file.txt" }.single()
+        }
+
+        httpClient.delete("/api/v1/identities/remove-file") {
+            parameter("identityId", identityEntity.id.value)
+            parameter("fileId", fileEntity.id.value)
+            header(HttpHeaders.Host, "localhost:8080")
+            header(HttpHeaders.Origin, "http://localhost:8080")
+            header("X-CSRF-Token", csrfToken.token)
+        }
+            .apply { assertEquals(HttpStatusCode.OK, status) }
 
         httpClient.post("/api/v1/identities/delete") {
             parameter("identityId", identityEntity.id.value)
@@ -117,8 +168,6 @@ class IdentityRouterTest {
             header(HttpHeaders.Origin, "http://localhost:8080")
             header("X-CSRF-Token", csrfToken.token)
         }
-            .apply {
-                assertEquals(HttpStatusCode.Found, status)
-            }
+            .apply { assertEquals(HttpStatusCode.Found, status) }
     }
 }
