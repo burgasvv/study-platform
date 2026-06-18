@@ -6,19 +6,16 @@
 
 
 ###
-GET /api/v1/security/csrf-token
-Host: http://localhost:9000
+GET https://localhost:8443/api/v1/security/csrf-token
 Accept: application/json
 
 ###
-GET /api/v1/security/login
-Host: https://localhost:8443
+GET https://localhost:8443/api/v1/security/login
 Accept: text/plain
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
-GET /api/v1/security/logout
-Host: https://localhost:8443
+GET https://localhost:8443/api/v1/security/logout
 Accept: text/plain
 
 
@@ -28,12 +25,11 @@ Accept: text/plain
 
 
 ###
-POST /api/v1/identities/create
-Host: localhost:9000
+POST https://localhost:8443/api/v1/identities/create
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
-X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
+Origin: https://localhost:8443
+X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 
 {
     "authority": "ADMIN",
@@ -47,11 +43,10 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 }
 
 ###
-POST /api/v1/identities/create
-Host: localhost:9000
+POST https://localhost:8443/api/v1/identities/create
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 
 {
@@ -66,11 +61,10 @@ X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 }
 
 ###
-POST /api/v1/identities/update
-Host: localhost:8080
+POST https://localhost:8443/api/v1/identities/update
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:8080
+Origin: https://localhost:8443
 X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 
 {
@@ -79,28 +73,24 @@ X-Csrf-Token: 0ec80af2-029a-4470-b177-3add1f1fcf56
 }
 
 ###
-POST /api/v1/identities/delete?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
-Host: localhost:9000
-Origin: http://localhost:9000
+POST https://localhost:8443/api/v1/identities/delete?identityId=4035710d-88b0-4a45-a2f8-71949ea0a06e
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 ###
-GET /api/v1/identities/by-id?identityId=e2385462-0674-47c3-96c0-c5666526c76f
-Host: localhost:9000
+GET https://localhost:8443/api/v1/identities/by-id?identityId=e2385462-0674-47c3-96c0-c5666526c76f
 Accept: application/json
 
 ###
-GET /api/v1/identities
-Host: localhost:9000
+GET https://localhost:8443/api/v1/identities
 Accept: application/json
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
-PUT /api/v1/identities/change-password
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/identities/change-password
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 {
@@ -109,11 +99,10 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 }
 
 ###
-PUT /api/v1/identities/change-status
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/identities/change-status
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
@@ -129,11 +118,10 @@ Authorization: Basic burgasvv@gmail.com burgasvv
 
 
 ###
-POST /api/v1/courses/create
-Host: localhost:9000
+POST https://localhost:8443/api/v1/courses/create
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
@@ -143,11 +131,10 @@ Authorization: Basic burgasvv@gmail.com burgasvv
 }
 
 ###
-PUT /api/v1/courses/update
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/courses/update
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
@@ -157,29 +144,25 @@ Authorization: Basic burgasvv@gmail.com burgasvv
 }
 
 ###
-DELETE /api/v1/courses/delete?courseId=51b325af-7b99-4f13-a3c3-7aad0a1776df
-Host: localhost:9000
+DELETE https://localhost:8443/api/v1/courses/delete?courseId=51b325af-7b99-4f13-a3c3-7aad0a1776df
 Accept: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
-GET /api/v1/courses
-Host: localhost:9000
+GET https://localhost:8443/api/v1/courses
 Accept: application/json
 
 ###
-GET /api/v1/courses/by-id?courseId=0d518a52-e188-47ca-befd-742ce4786812
-Host: localhost:9000
+GET https://localhost:8443/api/v1/courses/by-id?courseId=0d518a52-e188-47ca-befd-742ce4786812
 Accept: application/json
 
 ###
-PUT /api/v1/courses/add-identity
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/courses/add-identity
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 {
@@ -188,11 +171,10 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 }
 
 ###
-PUT /api/v1/courses/remove-identity
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/courses/remove-identity
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 {
@@ -207,11 +189,10 @@ X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 
 
 ###
-POST /api/v1/projects/create
-Host: localhost:9000
+POST https://localhost:8443/api/v1/projects/create
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
@@ -222,11 +203,10 @@ Authorization: Basic burgasvv@gmail.com burgasvv
 }
 
 ###
-PUT /api/v1/projects/update
-Host: localhost:9000
+PUT https://localhost:8443/api/v1/projects/update
 Accept: application/json
 Content-Type: application/json
-Origin: http://localhost:9000
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
@@ -236,13 +216,11 @@ Authorization: Basic burgasvv@gmail.com burgasvv
 }
 
 ###
-DELETE /api/v1/projects/delete?projectId=eb91e07e-973e-4ebd-881e-b042419c526e
-Host: localhost:9000
-Origin: http://localhost:9000
+DELETE https://localhost:8443/api/v1/projects/delete?projectId=eb91e07e-973e-4ebd-881e-b042419c526e
+Origin: https://localhost:8443
 X-Csrf-Token: cdd80ace-185e-49d2-a18b-15e5286966cc
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
-GET /api/v1/projects/by-id?projectId=3e585146-da09-4580-8bd1-95ae4c27f05b
-Host: localhost:9000
+GET https://localhost:8443/api/v1/projects/by-id?projectId=3e585146-da09-4580-8bd1-95ae4c27f05b
 Accept: application/json
