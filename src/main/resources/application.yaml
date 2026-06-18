@@ -1,8 +1,15 @@
 
 ktor:
   deployment:
-    port: $PORT:8080
+    port: 8080
+    sslPort: 8443
     host: 0.0.0.0
+  security:
+    ssl:
+      keyStore: '$KEYSTORE_PATH:src/main/resources/keystore.jks'
+      keyAlias: myalias
+      keyStorePassword: mypassword
+      privateKeyPassword: mypassword
   postgres:
     driver: 'org.postgresql.Driver'
     url: '$POSTGRES_URL:jdbc:postgresql://localhost:5000/study-platform-db'

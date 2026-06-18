@@ -1,11 +1,13 @@
 
 FROM gradle:9.4.1 AS build
-WORKDIR /app
+WORKDIR /gradle
 COPY . .
-RUN gradle buildFatJar --no-daemon
+RUN gradle buildFatJar
 
 FROM bellsoft/liberica-openjdk-alpine:25 AS prod
-EXPOSE 9000
 WORKDIR /app
-COPY --from=build /app/build/libs/*.jar /app/app.jar
+EXPOSE 8080
+EXPOSE 8443
+COPY --from=build /gradle/build/libs/*.jar /app/app.jar
+COPY ./src/main/resources/keystore.jks /app/keystore.jks
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

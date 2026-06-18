@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - project router tests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">org.burgas.router.ProjectRouterTest</a> &gt; 
+<span class="breadcrumb">project router tests</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :test</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :test</h2>
+<h1>project router tests</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">2.308s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<pre id="root-0-test-stdout-project router tests">2026-06-18 11:39:01.504 [DefaultDispatcher-worker-1 @call-context#4] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-06-18 11:39:01.603 [DefaultDispatcher-worker-1 @coroutine#5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-06-18 11:39:01.747 [DefaultDispatcher-worker-1 @coroutine#5] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6161c1f0
+2026-06-18 11:39:01.748 [DefaultDispatcher-worker-1 @coroutine#5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-06-18 11:39:02.138 [DefaultDispatcher-worker-1 @call-context#4] INFO  io.ktor.test - Application started in 0.647 seconds.
+2026-06-18 11:39:02.139 [DefaultDispatcher-worker-2 @coroutine#6] INFO  io.ktor.test - Responding at http://localhost:80
+2026-06-18 11:39:02.139 [DefaultDispatcher-worker-2 @coroutine#6] INFO  io.ktor.test - Responding at https://localhost:443
+2026-06-18 11:39:02.370 [DefaultDispatcher-worker-2 @request#13] DEBUG Exposed - INSERT INTO &quot;identity&quot; (id, authority, email, &quot;password&quot;, firstname, lastname, patronymic, about, status) VALUES ('b0686182-502f-46ac-8ce4-7b913735c015', 'ADMIN', 'admin@gmail.com', '$2a$10$Hn.PRvTu2UJFKb13vs6Dk.SdXOvtn0o2b0QwMCZQAI8hd1PWuMBs6', 'Admin', 'Admin', 'Admin', 'About Admin', TRUE)
+2026-06-18 11:39:02.448 [DefaultDispatcher-worker-2 @request#13] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at, identity_course.identity_id, identity_course.course_id FROM course INNER JOIN identity_course ON identity_course.course_id = course.id WHERE identity_course.identity_id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:02.455 [DefaultDispatcher-worker-2 @request#13] DEBUG Exposed - SELECT file.id, file.&quot;name&quot;, file.content_type, file.&quot;data&quot;, identity_file.identity_id, identity_file.file_id FROM file INNER JOIN identity_file ON identity_file.file_id = file.id WHERE identity_file.identity_id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:02.484 [DefaultDispatcher-worker-2 @request#14] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.547 [DefaultDispatcher-worker-2] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.556 [DefaultDispatcher-worker-2 @request#18] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.638 [DefaultDispatcher-worker-2 @request#18] DEBUG Exposed - INSERT INTO course (id, &quot;name&quot;, description, created_at) VALUES ('2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2', 'Test Course', 'About Test Course', '2026-06-18')
+2026-06-18 11:39:02.651 [DefaultDispatcher-worker-2 @request#18] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id, identity_course.identity_id, identity_course.course_id FROM &quot;identity&quot; INNER JOIN identity_course ON identity_course.identity_id = &quot;identity&quot;.id WHERE identity_course.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.655 [DefaultDispatcher-worker-2 @request#18] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.672 [DefaultDispatcher-worker-5] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.&quot;name&quot; = 'Test Course'
+2026-06-18 11:39:02.681 [DefaultDispatcher-worker-5 @request#19] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.739 [DefaultDispatcher-worker-5 @request#19] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.754 [DefaultDispatcher-worker-5 @request#19] DEBUG Exposed - INSERT INTO project (id, &quot;name&quot;, description, created_at, course_id) VALUES ('5ed8a73a-f45d-46b6-8364-cc529cc4afac', 'Test Project', 'About Test Project', '2026-06-18T11:39:02.737257', '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2')
+2026-06-18 11:39:02.766 [DefaultDispatcher-worker-5 @request#19] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.784 [DefaultDispatcher-worker-3] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.&quot;name&quot; = 'Test Project'
+2026-06-18 11:39:02.790 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.849 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.id = '5ed8a73a-f45d-46b6-8364-cc529cc4afac' FOR UPDATE
+2026-06-18 11:39:02.851 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '00000000-0000-0000-0000-000000000000'
+2026-06-18 11:39:02.853 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.856 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.865 [DefaultDispatcher-worker-3 @request#20] DEBUG Exposed - UPDATE project SET &quot;name&quot;='New Test Project' WHERE id = '5ed8a73a-f45d-46b6-8364-cc529cc4afac'
+2026-06-18 11:39:02.876 [DefaultDispatcher-worker-3 @request#21] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:02.934 [DefaultDispatcher-worker-3 @request#21] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.id = '5ed8a73a-f45d-46b6-8364-cc529cc4afac'
+2026-06-18 11:39:02.937 [DefaultDispatcher-worker-3 @request#21] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:02.940 [DefaultDispatcher-worker-3 @request#21] DEBUG Exposed - DELETE FROM project WHERE project.id = '5ed8a73a-f45d-46b6-8364-cc529cc4afac'
+2026-06-18 11:39:02.952 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.email = 'admin@gmail.com'
+2026-06-18 11:39:03.008 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:03.011 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id, identity_course.identity_id, identity_course.course_id FROM &quot;identity&quot; INNER JOIN identity_course ON identity_course.identity_id = &quot;identity&quot;.id WHERE identity_course.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:03.013 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:03.015 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - DELETE FROM course WHERE course.id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2'
+2026-06-18 11:39:03.017 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id, identity_course.identity_id, identity_course.course_id FROM &quot;identity&quot; INNER JOIN identity_course ON &quot;identity&quot;.id = identity_course.identity_id WHERE identity_course.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2' LIMIT 1
+2026-06-18 11:39:03.020 [DefaultDispatcher-worker-5 @request#22] DEBUG Exposed - SELECT project.id, project.&quot;name&quot;, project.description, project.course_id, project.task_id, project.created_at FROM project WHERE project.course_id = '2a1c3ed6-fa94-4304-89c5-6bd41e48dbd2' LIMIT 1
+2026-06-18 11:39:03.029 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:03.033 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - SELECT &quot;identity&quot;.id, &quot;identity&quot;.authority, &quot;identity&quot;.email, &quot;identity&quot;.&quot;password&quot;, &quot;identity&quot;.status, &quot;identity&quot;.firstname, &quot;identity&quot;.lastname, &quot;identity&quot;.patronymic, &quot;identity&quot;.about, &quot;identity&quot;.image_id FROM &quot;identity&quot; WHERE &quot;identity&quot;.id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:03.035 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at, identity_course.identity_id, identity_course.course_id FROM course INNER JOIN identity_course ON identity_course.course_id = course.id WHERE identity_course.identity_id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:03.037 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - SELECT file.id, file.&quot;name&quot;, file.content_type, file.&quot;data&quot;, identity_file.identity_id, identity_file.file_id FROM file INNER JOIN identity_file ON identity_file.file_id = file.id WHERE identity_file.identity_id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:03.038 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - DELETE FROM &quot;identity&quot; WHERE &quot;identity&quot;.id = 'b0686182-502f-46ac-8ce4-7b913735c015'
+2026-06-18 11:39:03.041 [DefaultDispatcher-worker-5 @request#23] DEBUG Exposed - SELECT course.id, course.&quot;name&quot;, course.description, course.created_at, identity_course.course_id, identity_course.identity_id FROM course INNER JOIN identity_course ON course.id = identity_course.course_id WHERE identity_course.identity_id = 'b0686182-502f-46ac-8ce4-7b913735c015' LIMIT 1
+</pre>
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-project router tests">Copy</button>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.4.1</a> at 18 июн. 2026 г., 11:39:03</p>
+</div>
+</div>
+</body>
+</html>

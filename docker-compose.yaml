@@ -35,14 +35,15 @@ services:
       - postgres
       - redis
     ports:
-      - "9000:9000"
+      - "9000:8080"
+      - "9443:8443"
     environment:
-      PORT: 9000
       POSTGRES_URL: jdbc:postgresql://postgres:5432/study-platform-db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      KEYSTORE_PATH: /app/keystore.jks
 
 volumes:
   postgres-data:

@@ -7,18 +7,18 @@
 
 ###
 GET /api/v1/security/csrf-token
-Host: localhost:8080
+Host: http://localhost:9000
 Accept: application/json
 
 ###
 GET /api/v1/security/login
-Host: localhost:8080
+Host: https://localhost:8443
 Accept: text/plain
 Authorization: Basic burgasvv@gmail.com burgasvv
 
 ###
 GET /api/v1/security/logout
-Host: localhost:8080
+Host: https://localhost:8443
 Accept: text/plain
 
 
